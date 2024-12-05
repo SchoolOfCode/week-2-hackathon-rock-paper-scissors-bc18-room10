@@ -16,10 +16,6 @@
 //playGame playRound
 //comparison
 
-// function endGame() {
-//     return 0;
-// }
-
 // list of variables
 let userChoice;
 let computerChoice;
@@ -35,7 +31,6 @@ let playGame = confirm("Do you want to play Rock, Paper, Scissors?");
      alert("Sorry to see you go!");
  } else {
      askName();
-     
 }
 
 function askName() {
