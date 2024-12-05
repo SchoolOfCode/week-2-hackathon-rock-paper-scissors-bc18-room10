@@ -20,21 +20,26 @@
 //     return 0;
 // }
 
-//list of variables
-let userChoice = "rock";
-let computerChoice = "rock";
+// list of variables
+let userChoice;
+let computerChoice;
 let userName;
-let userScore;
-let computerScore;
+let userScore = 0;
+let computerScore =0;
 let roundResult;
 
+
 let playGame = confirm("Do you want to play Rock, Paper, Scissors?");
-console.log(playGame);
-if (!playGame) {
-    alert("Sorry to see you go!");
-} else {
-    askName();
+// console.log(playGame);
+ if (!playGame) {
+     alert("Sorry to see you go!");
+ } else {
+     askName();
+     
 }
+
+
+
 
 function askName() {
     let userName = prompt("What is your name?");
@@ -43,19 +48,83 @@ function askName() {
     }
 }
 
-// function playRound() {
-//     alert("Please type either rock, paper or scissors")
-// }
+
+//userChoice
+function getUserChoice() {
+    userChoice = prompt('What do you choose: rock, paper or scissors?');
+
+    if ((userChoice != 'rock')&& (userChoice != 'paper') && (userChoice != 'scissors') ){
+        console.log("Please type either 'rock', 'paper' or 'scissors'." )
+        getUserChoice();
+    } 
+
+    return userChoice;
+}
+
+//computerChoice function
+function getComputerChoice() {
+    //array with possible
+    const options = ['rock', 'paper', 'scissors'];    
+    
+    //geenrate random number range 
+    computerChoice = options[Math.floor((Math.random() * 3))];
+
+    return computerChoice;
+}
+
+
+
+
+
+function playRound() {
+    //alert("Please type either rock, paper or scissors");
+    getUserChoice();
+    getComputerChoice();
+
+    
+
+}
+
+playRound();
+
+ // if block 
 
 if (userChoice === computerChoice) {
     roundResult = "draw";
-    } else if ((userChoice === "rock" && computerChoice === "scissors") 
-        || (userChoice === "paper" && computerChoice === "rock") 
-        || (userChoice === "scissors" && computerChoice === "paper")) {
-            roundResult = "win";
-        } else if ((userChoice === "rock" && computerChoice === "paper") 
-            || (userChoice === "paper" && computerChoice === "scissors") 
-            || (userChoice === "scissors" && computerChoice === "rock")) {
-                roundResult = "lose";
-        }
+} else if (
+    (userChoice === "rock" && computerChoice === "scissors") || 
+    (userChoice === "paper" && computerChoice === "rock") || 
+    (userChoice === "scissors" && computerChoice === "paper")) 
+{
+    roundResult = "win";
+    userScore++;
+} else if (
+    (userChoice === "rock" && computerChoice === "paper") || 
+    (userChoice === "paper" && computerChoice === "scissors") || 
+    (userChoice === "scissors" && computerChoice === "rock")) 
+{
+    roundResult = "lose";
+    computerScore++;
+}
     
+
+function publishResult() {
+    alert(`Computer: ${computerScore} ${userName}: ${userScore} \n
+            ${userName} picked ${userChoice}. Computer picked ${computerChoice}.\n 
+            You ${roundResult}!`)
+}
+
+
+
+
+
+console.log('userChoice', userChoice)
+console.log('computerChoice', computerChoice)
+console.log('roundResult', roundResult)
+console.log(userScore)
+console.log(computerScore)
+console.log(publishResult())
+
+
+
+
