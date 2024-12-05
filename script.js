@@ -1,11 +1,11 @@
 //Prompt the user when they open the page if the want to start the game. DONE
 //Create a function to start the game DONE
 //Prompt asking the user for their name DONE
-//Prompt the user to pick from rock paper and scissors
-//Generate a random choice for the computer to pick
-//Compare the users choice with the computers choice
-//Alert the results of each choice and the result of the match
-//and show the new point total of the user and the computer
+//Prompt the user to pick from rock paper and scissors DONE
+//Generate a random choice for the computer to pick DONE
+//Compare the users choice with the computers choice DONE
+//Alert the results of each choice and the result of the match DONE
+//and show the new point total of the user and the computer DONE
 //prompt if they want to play again from the RPS choice
 
 //Potential list of functions
@@ -27,7 +27,7 @@ let userName;
 let userScore = 0;
 let computerScore =0;
 let roundResult;
-
+let playAgain;
 
 let playGame = confirm("Do you want to play Rock, Paper, Scissors?");
 // console.log(playGame);
@@ -38,16 +38,13 @@ let playGame = confirm("Do you want to play Rock, Paper, Scissors?");
      
 }
 
-
-
-
 function askName() {
-    let userName = prompt("What is your name?");
-    if (userName === null || userName === "") {
-        askName();
-    }
+    userName = prompt("What is your name?");
+     if (userName === null || userName === "") {
+         askName();
+     }
+    return userName;
 }
-
 
 //userChoice
 function getUserChoice() {
@@ -72,41 +69,28 @@ function getComputerChoice() {
     return computerChoice;
 }
 
-
-
-
-
 function playRound() {
     //alert("Please type either rock, paper or scissors");
     getUserChoice();
     getComputerChoice();
-
-    
-
-}
-
-playRound();
-
- // if block 
-
-if (userChoice === computerChoice) {
-    roundResult = "draw";
-} else if (
-    (userChoice === "rock" && computerChoice === "scissors") || 
-    (userChoice === "paper" && computerChoice === "rock") || 
-    (userChoice === "scissors" && computerChoice === "paper")) 
-{
-    roundResult = "win";
-    userScore++;
-} else if (
-    (userChoice === "rock" && computerChoice === "paper") || 
-    (userChoice === "paper" && computerChoice === "scissors") || 
-    (userChoice === "scissors" && computerChoice === "rock")) 
-{
-    roundResult = "lose";
-    computerScore++;
-}
-    
+    if (userChoice === computerChoice) {
+        roundResult = "draw";
+    } else if (
+        (userChoice === "rock" && computerChoice === "scissors") || 
+        (userChoice === "paper" && computerChoice === "rock") || 
+        (userChoice === "scissors" && computerChoice === "paper")) 
+    {
+        roundResult = "win";
+        userScore++;
+    } else if (
+        (userChoice === "rock" && computerChoice === "paper") || 
+        (userChoice === "paper" && computerChoice === "scissors") || 
+        (userChoice === "scissors" && computerChoice === "rock")) 
+    {
+        roundResult = "lose";
+        computerScore++;
+    }
+}  
 
 function publishResult() {
     alert(`Computer: ${computerScore} ${userName}: ${userScore} \n
@@ -114,17 +98,19 @@ function publishResult() {
             You ${roundResult}!`)
 }
 
+function fullGame() {
+    playRound();
+    publishResult();
+    restartGame();
+    }
 
+function restartGame() {
+    playAgain = confirm(`Do you want to play again?`);
+    if (playAgain === true) {
+        fullGame()
+    } else {
+        alert("you suck");
+    }
+}
 
-
-
-console.log('userChoice', userChoice)
-console.log('computerChoice', computerChoice)
-console.log('roundResult', roundResult)
-console.log(userScore)
-console.log(computerScore)
-console.log(publishResult())
-
-
-
-
+fullGame()
