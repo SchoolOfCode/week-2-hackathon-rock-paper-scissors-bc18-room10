@@ -16,6 +16,11 @@
 //playGame playRound
 //comparison
 
+//Create an array DONE
+//With multiple message options DONE
+//for when you leave the game
+//that is chosen randomly each time
+
 // list of variables
 let userChoice;
 let computerChoice;
@@ -25,6 +30,7 @@ let computerScore = 0;
 let roundResult;
 let playAgain;
 let roundNumber = 0;
+let leaverMessageChoice;
 
 
 //Pop-up to start the game
@@ -66,6 +72,14 @@ function getComputerChoice() {
     computerChoice = options[Math.floor((Math.random() * 3))];
 
     return computerChoice;
+}
+
+//Picks from 3 random leaver messages
+function randomLeaverMessage() {
+    const leaverMessages = ["Booooooooo! Live a little...", "Thank you for playing our game", "See you next time!"]; 
+    //random number gen, apply array choice based of number
+    leaverMessageChoice = leaverMessages[Math.floor((Math.random() * leaverMessages.length))];
+    return leaverMessageChoice;
 }
 
 //Collects both choices and compares for result. Tracks and changes user and computer score
@@ -119,7 +133,7 @@ function restartGame() {
     if (playAgain === true) {
         fullGame()
     } else {
-        alert("Booooooooo! Live a little...");
+        alert(randomLeaverMessage());
     }
 }
 
