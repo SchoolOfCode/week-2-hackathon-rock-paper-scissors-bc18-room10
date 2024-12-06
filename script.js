@@ -61,7 +61,6 @@ function getUserChoice() {
 
 //geenrate random number range and applies to computer choice variable
 function getComputerChoice() {
-    //array with possible options
     const options = ["rock", "paper", "scissors"];    
     //random number gen, apply array choice based of number
     computerChoice = options[Math.floor((Math.random() * 3))];
@@ -127,6 +126,10 @@ function restartGame() {
 //Call to start the first round of the game
 fullGame() 
 
+
+
+
+//If we were to do more, we looked into added audio. Below is an example we found of how to potentially do this
 // function beep() {
 //     var snd = new Audio("");  
 //     snd.play();
